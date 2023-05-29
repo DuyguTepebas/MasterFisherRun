@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
    private Vector2 _deltaTouchStart, _deltaTouchEnd, _dragDelta;
    private float _slideFactor = 0.1f;
    [SerializeField] private Vector2 boundaries;
+   [SerializeField] private AnchorMovement AnchorMovementScript;
 
    private void Update()
    {
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
    {
       _deltaTouchStart = Input.mousePosition;
       _deltaTouchEnd = Input.mousePosition;
+      AnchorMovementScript.StartMoveForwardRoutine();
    }
    
    // void SetTouchEnd()
