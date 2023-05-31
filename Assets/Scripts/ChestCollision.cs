@@ -24,12 +24,14 @@ public class ChestCollision : MonoBehaviour
     private void ReceiveDamage()
     {
         chestHealth--;
+        chestHealth = Mathf.Max(chestHealth, 0);
         Debug.Log(chestHealth);
         if(chestHealth <= 0) OpenChest();
     }
 
     void OpenChest()
     {
+        chestBoxCollider.enabled = false;
         Debug.Log("OpenChest");
     }
 }//class

@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
    private Vector2 _deltaTouchStart, _deltaTouchEnd, _dragDelta;
    private float _slideFactor = 0.1f;
    [SerializeField] private Vector2 boundaries;
-   [SerializeField] private AnchorMovement AnchorMovementScript;
+   //[SerializeField] private AnchorMovement AnchorMovementScript;
 
    private void Update()
    {
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
    {
       _deltaTouchStart = Input.mousePosition;
       _deltaTouchEnd = Input.mousePosition;
-      AnchorMovementScript.StartMoveForwardRoutine();
+      //AnchorMovementScript.StartMoveForwardRoutine();
    }
    
    // void SetTouchEnd()
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
    void DragDeltaInput()
    {
-      Debug.Log("deltaDragInput");
+      //Debug.Log("deltaDragInput");
       _deltaTouchStart = Input.mousePosition;
       _dragDelta.x = (_deltaTouchEnd.x - _deltaTouchStart.x) * _slideFactor;
       _deltaTouchEnd = _deltaTouchStart;
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
       private float _positionOnX = 0;
       void Swerve()
       {
-         Debug.Log("swerve");
+         //Debug.Log("swerve");
          _positionOnX = transform.position.x;
          _positionOnX = Mathf.Lerp(_positionOnX, _positionOnX - _dragDelta.x,
             Time.deltaTime * swerveSpeed);
