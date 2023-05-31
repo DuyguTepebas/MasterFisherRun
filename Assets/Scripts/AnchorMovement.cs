@@ -6,9 +6,14 @@ using UnityEngine;
 public class AnchorMovement : MonoBehaviour
 {
     [SerializeField] private float speed=1f;
-    private Quaternion startRotation;
+    [SerializeField] private float maxDistance;
     private Quaternion targetRotation;
-    
+    private float _distance = 0f;
+    public float MaxDistance
+    {
+        get => maxDistance;
+        set => maxDistance = value;
+    }
 
     public void StartMoveForwardRoutine()
     {
@@ -16,20 +21,24 @@ public class AnchorMovement : MonoBehaviour
     }
     IEnumerator MoveForwardRoutine()
     {
-        startRotation = transform.rotation;
-
         // Calculate the target rotation based on the rotation angle
         while (true)
         {
             transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.forward,
                 speed * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation *= Quaternion.Euler(new Vector3(10f, 0f, 0f)), .1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation *= Quaternion.Euler(new Vector3(50f, 0f, 0f)), .1f);
+            _distance += (speed * Time.deltaTime);
+            if (_distance >= maxDistance)
+            {
+                Destroy(gameObject);
+                yield break;
+            }
             yield return null;
         }
     }
 
-
-
-
-
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     Debug.Log(other.gameObject.name);
+    // }
 }//class

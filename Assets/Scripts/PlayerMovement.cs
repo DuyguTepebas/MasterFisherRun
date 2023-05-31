@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
    private Vector2 _deltaTouchStart, _deltaTouchEnd, _dragDelta;
    private float _slideFactor = 0.1f;
    [SerializeField] private Vector2 boundaries;
+   private Coroutine _moveRoutine;
 
    private void Update()
    {
@@ -47,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
       Swerve();
    }
 
+   public void StopMoveRoutine()
+   {
+      StopCoroutine(_moveRoutine);
+   }
+   
    IEnumerator MoveForwardRoutine()
       {
          while (true)
@@ -59,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
       public void StartMoveForwardRoutine()
       {
-         StartCoroutine(nameof(MoveForwardRoutine));
+         _moveRoutine = StartCoroutine(nameof(MoveForwardRoutine));
       }
 
       private float _positionOnX = 0;

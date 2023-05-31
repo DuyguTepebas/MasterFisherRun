@@ -7,7 +7,7 @@ using UnityEngine;
 public class ChestCollision : MonoBehaviour
 {
     private BoxCollider chestBoxCollider;
-    private int chestHealth=2;
+    [SerializeField] private int chestHealth;
     [SerializeField] private Animator anim;
     private void Awake()
     {
@@ -16,22 +16,25 @@ public class ChestCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
-        ReceiveDamage();
-        anim.SetTrigger("ChestOpen");
+        if (other.CompareTag("Anchor"))
+        {
+            Destroy(other.gameObject);
+            ReceiveDamage();
+            anim.SetTrigger("ChestOpen");
+        }
     }
 
     private void ReceiveDamage()
     {
         chestHealth--;
         chestHealth = Mathf.Max(chestHealth, 0);
-        Debug.Log(chestHealth);
+        //Debug.Log(chestHealth);
         if(chestHealth <= 0) OpenChest();
     }
 
     void OpenChest()
     {
         chestBoxCollider.enabled = false;
-        Debug.Log("OpenChest");
+        //Debug.Log("OpenChest");
     }
 }//class

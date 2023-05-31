@@ -3,19 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Anchor
+  - Worm
+  - FinishLine
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Finish
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Chest
+  - Worm
+  - Door
+  - Player
+  - Anchor
   - 
   - 
   - 
